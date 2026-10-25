@@ -22,6 +22,10 @@ Routa do sítě se přidá automaticky spolu s adresou. Ověřeno přes `ip rout
 - Než vypnu jednu cestu na server, musí fungovat druhá (jako záloha jsem měl Tailscale).
 - Diagnostika po vrstvách (spojení, adresa, routa, firewall) šetří čas oproti hádání.
 
+**Trvalé řešení:** Adresa `10.8.0.2/24` je nastavená v NixOS konfiguraci
+(`networking.wireguard.interfaces.wg0.ips`), takže se po restartu služby i
+systému vrací sama. Ruční `ip addr add` byl jen dočasná oprava.
+
 ## SSH drop-in konfigurace se nepoužila
 
 **Příznak:** Moje `99-hardening.conf` neměla na sshd efekt.
