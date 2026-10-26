@@ -7,12 +7,12 @@ Bezpečný vzdálený přístup na server z jakékoli sítě, bez závislosti na
 
 | Zařízení | Adresa v tunelu | Role |
 |---|---|---|
-| ondycloud (server) | 10.8.0.1/24 | server, naslouchá na UDP 51820 |
-| notebook NixOS | 10.8.0.2/24 | klient |
-| telefon | 10.8.0.3/24 | klient |
-| notebook Debian | 10.8.0.4/24 | klient |
+| ondycloud (server) | 10.X.X.1/24 | server, naslouchá na UDP 51820 |
+| notebook NixOS | 10.X.X.2/24 | klient |
+| telefon | 10.X.X.3/24 | klient |
+| notebook Debian | 10.X.X.4/24 | klient |
 
-Síť `10.8.0.0/24`, hvězdicová topologie: klienti se připojují k serveru. Server je dosažitelný z internetu přes port forward na routeru (viz [port-forwarding.md](port-forwarding.md)).
+Síť `10.X.X.0/24`, hvězdicová topologie: klienti se připojují k serveru. Server je dosažitelný z internetu přes port forward na routeru (viz [port-forwarding.md](port-forwarding.md)).
 
 ## Konfigurace
 
@@ -20,14 +20,14 @@ Síť `10.8.0.0/24`, hvězdicová topologie: klienti se připojují k serveru. S
 
 ```
 [Interface]
-Address = 10.8.0.1/24
+Address = 10.X.X.1/24
 ListenPort = 51820
 PrivateKey = (skrytý)
 
 [Peer]
 # klient
 PublicKey = (veřejný klíč klienta)
-AllowedIPs = 10.8.0.2/32
+AllowedIPs = 10.X.X.2/32
 ```
 
 Každý klient má vlastní klíče a na serveru jedinou adresu `/32`. Server tak přijme od klienta jen provoz z jeho vlastní adresy.
@@ -36,18 +36,18 @@ Každý klient má vlastní klíče a na serveru jedinou adresu `/32`. Server ta
 
 ```nix
 networking.wireguard.interfaces.wg0 = {
-  ips = [ "10.8.0.2/24" ];
+  ips = [ "10.X.X.2/24" ];
   privateKeyFile = "/home/ondy/wg-laptop.key";
   peers = [{
     publicKey = "(veřejný klíč serveru)";
-    allowedIPs = [ "10.8.0.0/24" ];
+    allowedIPs = [ "10.X.X.0/24" ];
     endpoint = "X.X.X.X:51820";
     persistentKeepalive = 25;
   }];
 };
 ```
 
-- `allowedIPs = 10.8.0.0/24`: tunelem jde jen provoz do VPN sítě (split tunnel), ostatní internet jde normálně.
+- `allowedIPs = 10.X.X.0/24`: tunelem jde jen provoz do VPN sítě (split tunnel), ostatní internet jde normálně.
 - `persistentKeepalive = 25`: udržuje spojení otevřené přes NAT.
 - `privateKeyFile`: klíč je v souboru s právy 600. Nevkládám ho do konfigurace, protože ta končí v `/nix/store`, čitelném pro všechny uživatele.
 
@@ -61,10 +61,10 @@ networking.wireguard.interfaces.wg0 = {
 
 ```bash
 sudo wg show                  # latest handshake: před pár sekundami
-ip addr show wg0              # inet 10.8.0.2/24
-ip route get 10.8.0.1         # dev wg0
-ping -c 3 10.8.0.1
-ssh ondy@10.8.0.1
+ip addr show wg0              # inet 10.X.X.2/24
+ip route get 10.X.X.1         # dev wg0
+ping -c 3 10.X.X.1
+ssh ondy@10.X.X.1
 ```
 
 Spojení jsem ověřil i z mobilního hotspotu, tedy mimo domácí síť.
