@@ -36,20 +36,20 @@ Každé zařízení má vlastní klíč (ed25519).
 - Jediný veřejně povolený port: `51820/udp` (WireGuard), na routeru přesměrovaný na server (viz `network/port-forwarding.md`)
 
 ### VPN (WireGuard)
-- Rozhraní `wg0`, síť `10.8.0.0/24`, server `10.8.0.1`
+- Rozhraní `wg0`, síť `10.X.X.0/24`, server `10.X.X.1`
 - Klienti: notebook s NixOS, telefon, notebook s Debianem
 - Každý klient má vlastní pár klíčů a `AllowedIPs` omezené na jedinou adresu `/32`
 
 ```
 [Interface]
-Address = 10.8.0.1/24
+Address = 10.X.X.1/24
 ListenPort = 51820
 PrivateKey = (skrytý)
 
 [Peer]
 # klient
 PublicKey = (veřejný klíč klienta)
-AllowedIPs = 10.8.0.2/32
+AllowedIPs = 10.X.X.2/32
 ```
 
 ### fail2ban
