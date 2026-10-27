@@ -32,9 +32,7 @@ Webové služby (Gitea, Nextcloud) jsou dostupné jen uvnitř VPN, z internetu n
 ## Údržba
 - Aktualizace systému: `apt` a pravidelné restarty služeb
 - Upgrade verze: 24.04 → 26.04 LTS (16. 10.), viz [upgrade-log.md](upgrade-log.md)
-- Zálohy: TODO
 
 ## Další kroky
 - Odstranit Tailscale a jeho pravidla ve firewallu
-- Zkontrolovat zbytky po zrušeném SearXNG (`uwsgi`)
 - Doplnit zálohy a monitoring
