@@ -33,7 +33,7 @@ ls /etc/apt/sources.list.d/                             # stav repozitářů tř
 ---
 
 
-##Migrace Ubuntu → NixOS
+## Migrace Ubuntu → NixOS
 
 **Proč:** celá konfigurace serveru je v jednom souboru (`configuration.nix`), jde dát do gitu, snadno se obnoví a vrátí na předchozí generaci.
 
