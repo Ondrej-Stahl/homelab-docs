@@ -28,3 +28,22 @@ ls /etc/apt/sources.list.d/                             # stav repozitářů tř
 
 ## Co bych příště udělal jinak
 - **Zálohu před upgradem.** Server zatím zálohy nemá (viz [overview.md](overview.md)), a kdyby upgrade selhal, nebylo by kam se vrátit.
+
+
+##Migrace Ubuntu → NixOS
+
+**Proč:** celá konfigurace serveru je v jednom souboru (`configuration.nix`), jde dát do gitu, snadno se obnoví a vrátí na předchozí generaci.
+
+**Co se změnilo:**
+- Nextcloud ze snapu → NixOS modul
+- Služby přepsané do `configuration.nix`
+- i2pd a Reticulum jsem vypustil
+
+**Problémy:** překlep v `networking.hostName`. Jinak nic zásadního.
+
+**Stav k 2026-11-08:**
+- [x] Nextcloud
+- [x] Ollama
+- [~] Gitea: služba běží a web je dostupný, ale zatím nejdou vytvářet repozitáře
+- [ ] fail2ban
+- [ ] firewall
