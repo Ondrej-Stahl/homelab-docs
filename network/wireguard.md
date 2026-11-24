@@ -37,7 +37,7 @@ Každý klient má vlastní klíče a na serveru jedinou adresu `/32`. Server ta
 ```nix
 networking.wireguard.interfaces.wg0 = {
   ips = [ "10.X.X.2/24" ];
-  privateKeyFile = "/home/ondy/wg-laptop.key";
+  privateKeyFile = "/home/USER/wg-laptop.key";
   peers = [{
     publicKey = "(veřejný klíč serveru)";
     allowedIPs = [ "10.X.X.0/24" ];

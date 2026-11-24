@@ -7,7 +7,7 @@ Domácí server pro vlastní služby: verzování kódu, cloudové úložiště,
 
 | | |
 |---|---|
-| Systém | Ubuntu Server 26.04.1 LTS (kernel 7.0) |
+| Systém | NixOS 26.05 (kernel 6.18.63) |
 | Procesor | Intel Core i3-4170, 4 vlákna, 3,7 GHz |
 | Paměť | 5,2 GiB RAM |
 | Disk | 220 GB, využito cca 11 % |
@@ -22,7 +22,6 @@ Za běhu je zatížení nízké (zhruba 0,9 GiB RAM a nízký load), takže na s
 | Gitea | vlastní Git server (repozitáře, webové rozhraní) |
 | Nextcloud (snap) | cloudové úložiště pro rodinu |
 | Ollama | lokální jazykové modely (llama3.2:3b) |
-| i2pd + rnsd (Reticulum) | experimenty s anonymní sítí I2P a mesh sítí Reticulum |
 | WireGuard (+ Tailscale jako záloha) | vzdálený přístup, viz [network/wireguard.md](../network/wireguard.md) |
 | fail2ban, ufw | ochrana proti hádání hesel a firewall, viz [hardening.md](hardening.md) |
 | smartmontools, thermald | kontrola stavu disku a teploty |
