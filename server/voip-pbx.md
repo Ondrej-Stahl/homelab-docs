@@ -16,7 +16,6 @@ Malá domácí telefonní ústředna na serveru ondycloud. Hovory mezi dvěma te
 
 ## Konfigurace
 
-Do `configuration.nix`. Hesla zde nejsou, `ZMEN_HESLO_X` nahraď vlastním. Rozhraní `enp2s0` je LAN rozhraní serveru.
 
 ```nix
 services.asterisk = {
@@ -96,7 +95,6 @@ networking.firewall.interfaces."enp2s0" = {
 
 Pak `sudo nixos-rebuild switch` a `systemctl status asterisk`.
 
-Poznámka: hesla v `configuration.nix` skončí v `/nix/store`, kde je přečte každý uživatel serveru. Pro LAN-only provoz je to přijatelné. Při vystavení do internetu je potřeba použít soubor se secrety mimo store.
 
 ## Nastavení telefonů
 
@@ -109,7 +107,6 @@ V aplikaci Linphone volba "Use SIP account":
 | Domain | IP serveru |
 | Transport | UDP |
 
-V nastavení účtu vypnout Push notifications a vypnout optimalizaci baterie pro Linphone, jinak Android aplikaci uspí a hovor nepřijde.
 
 ## Ověření
 
